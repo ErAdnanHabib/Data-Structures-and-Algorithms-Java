@@ -26,7 +26,6 @@ class Solution {
         }
         // ----------------------------------------------
         // now we will nullify the whole row and column
-
         for(int r=1;r<matrix.length;r++){
             if(matrix[r][0]==0){
                 nullifyRow(matrix,r);
