@@ -1,7 +1,6 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        boolean hasRowZero=false;
-        boolean hasColZero=false;
+        boolean hasRowZero=false,hasColZero=false;
         
         for(int c=0;c<matrix[0].length;c++){
             if(matrix[0][c]==0){
