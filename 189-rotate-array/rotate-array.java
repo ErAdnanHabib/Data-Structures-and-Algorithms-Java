@@ -1,24 +1,17 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        k = k % n;  // Ensure k is within the bounds of the array length
-        if (k == 0) return;
-
-        // Step 1: Reverse the entire array
-        reverse(nums, 0, n - 1);
-        // Step 2: Reverse the first k elements
-        reverse(nums, 0, k - 1);
-        // Step 3: Reverse the remaining n - k elements
-        reverse(nums, k, n - 1);
-    }
-
-    private void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+        Queue<Integer> queue=new ArrayDeque<>();
+        k=k % nums.length;
+        if(k==0)return ;
+        int finalLength= nums.length-k;
+        for(int i=finalLength;i<=nums.length-1;i++){
+            queue.add(nums[i]);
         }
+        for(int i=0;i<=finalLength-1;i++){
+            queue.add(nums[i]);
+        }
+        for(int i=0;i<=nums.length-1;i++){
+            nums[i]=queue.poll();
+        } 
     }
 }
