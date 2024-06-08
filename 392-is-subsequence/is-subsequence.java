@@ -1,13 +1,15 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        boolean answer=false;
-        Queue<Character> queue=new LinkedList<>();
-        for(int i=0;i<s.length();i++){
-            queue.add(s.charAt(i));
+        int sIndex = 0; // Pointer for 's'
+        
+        // Iterate through 't' and 's' simultaneously
+        for (int i = 0; i < t.length() && sIndex < s.length(); i++) {
+            // If current character in 't' matches character in 's', move to next character in 's'
+            if (t.charAt(i) == s.charAt(sIndex)) {
+                sIndex++;
+            }
         }
-        for(int i=0 ; i<t.length() && !queue.isEmpty() ; i++){
-            if(queue.peek() == t.charAt(i))queue.poll();
-        }
-        return queue.isEmpty();
-    }
-}
+        
+        // If we have consumed all characters in 's', it is a subsequence of 't'
+        return sIndex == s.length();
+    }}
