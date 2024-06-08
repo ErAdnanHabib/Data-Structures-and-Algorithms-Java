@@ -8,7 +8,6 @@ class Solution {
         for(int i=0 ; i<t.length() && !queue.isEmpty() ; i++){
             if(queue.peek() == t.charAt(i))queue.poll();
         }
-        
         return queue.isEmpty();
     }
 }
