@@ -8,4 +8,10 @@ class Solution {
         if(b==0)return a;
         return gcd(b,a % b);
     }
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.gcdOfStrings("ABCABC", "ABC")); // Output: "ABC"
+        System.out.println(solution.gcdOfStrings("ABABAB", "ABAB")); // Output: "AB"
+        System.out.println(solution.gcdOfStrings("LEET", "CODE")); // Output: ""
+    }
 }
