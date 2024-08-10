@@ -1,19 +1,31 @@
 class Solution {
     public boolean isValid(String s) {
-        HashMap<Character,Character> map= new HashMap<>();
         Stack<Character> stack = new Stack<>();
-        map.put('}','{');
-        map.put(')','(');
-        map.put(']','[');
-        for(int i=0;i<s.length();i++){
-            char ch=s.charAt(i);
-            if(map.containsKey(ch)){
-               char char_pop=stack.size()!=0?stack.pop():'#';
-                if(char_pop!=map.get(ch))return false;
+
+        for(int i=0 ; i < s.length() ; i++){
+            char curr = s.charAt(i);
+            if(isOpening(curr)){
+                stack.push(curr);
             }else{
-                stack.push(ch);
+                if(stack.isEmpty()){
+                    return false;
+                }else if(!isMatching(stack.peek() , curr)){
+                    return false;
+                }else{
+                    stack.pop();
+                }
             }
-        }
-        return stack.isEmpty(); 
+        }return stack.isEmpty();
+
+        
+    }
+
+    public boolean isOpening(char c){
+        return c== '[' || c=='(' || c=='{';
+    }
+    public boolean isMatching(char open , char close){
+        return (open == '{' && close == '}') ||
+                (open == '(' && close == ')') ||
+                (open == '[' && close == ']') ;
     }
 }
