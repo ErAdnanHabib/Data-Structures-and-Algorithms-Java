@@ -1,6 +1,8 @@
 class Solution {
     public int strStr(String haystack, String needle) {
-       return haystack.indexOf(needle);       
-       
+        StringBuilder str = new StringBuilder(haystack);
+        int index = str.indexOf(needle);
+        return index;
+        
     }
 }
