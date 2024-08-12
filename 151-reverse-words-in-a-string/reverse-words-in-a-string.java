@@ -1,14 +1,18 @@
 class Solution {
     public String reverseWords(String s) {
-        String[] words=s.split(" ");
-        StringBuilder newStr=new StringBuilder();
-        for(int i=words.length-1 ; i>=0 ; i--){
+        Stack<String> stack = new Stack<>();
+        StringBuilder sbtr = new StringBuilder();
+        String[] words = s.split(" ");
+        for(int i=0 ; i<words.length ; i++){
             if(!words[i].isEmpty()){
-                newStr.append(words[i]).append(" ");
-            } 
+                stack.push(words[i]);
+            }
         }
-        newStr.setLength(newStr.length() - 1);
-        return newStr.toString();
-     
+        while(!stack.isEmpty()){
+            sbtr.append(stack.pop()+ " ");
+        }
+        String str = sbtr.toString();
+        return str.trim();
+
     }
 }
