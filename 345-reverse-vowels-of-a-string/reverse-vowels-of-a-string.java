@@ -22,7 +22,7 @@ class Solution {
         }
         return new String(arr);
     }
-    public boolean vowels(char ch){
+    private boolean vowels(char ch){
         ch = Character.toLowerCase(ch);
         return ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u';
     }
