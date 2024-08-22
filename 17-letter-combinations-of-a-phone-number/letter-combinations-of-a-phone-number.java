@@ -1,35 +1,25 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-
-        if(digits == null || digits.length() == 0){
+        if (digits == null || digits.length() == 0) {
             return new ArrayList<>();
         }
-        
-        HashMap<Character , String> map = new HashMap<>();
-        map.put('2' , "abc");
-        map.put('3' , "def");
-        map.put('4' , "ghi");
-        map.put('5' , "jkl");
-        map.put('6' , "mno");
-        map.put('7' , "pqrs");
-        map.put('8' , "tuv");
-        map.put('9' , "wxyz");
 
+        String[] letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         List<String> result = new ArrayList<>();
-        backtrack(result , "" , digits , map);
-        return result;
+        Queue<String> queue = new LinkedList<>();
 
-    }
-
-    private void backtrack(List<String> result , String current , String nextDigits , HashMap<Character , String> map){
-
-        if(nextDigits.length()==0){
-            result.add(current);
-        }else{
-            String letters = map.get(nextDigits.charAt(0));
-            for(char ch : letters.toCharArray()){
-                backtrack(result , current + ch , nextDigits.substring(1) , map);
+        queue.add("");
+        for (char digit : digits.toCharArray()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String current = queue.poll();
+                for (char letter : letters[digit - '0'].toCharArray()) {
+                    queue.add(current + letter);
+                }
             }
         }
+
+        result.addAll(queue);
+        return result;
     }
 }
