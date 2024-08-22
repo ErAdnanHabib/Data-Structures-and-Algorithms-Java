@@ -6,20 +6,21 @@ class Solution {
 
         String[] letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         List<String> result = new ArrayList<>();
-        Queue<String> queue = new LinkedList<>();
 
-        queue.add("");
-        for (char digit : digits.toCharArray()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                String current = queue.poll();
-                for (char letter : letters[digit - '0'].toCharArray()) {
-                    queue.add(current + letter);
-                }
+        backtrack(result, new StringBuilder(), digits, letters);
+        return result;
+    }
+
+    private void backtrack(List<String> result, StringBuilder current, String nextDigits, String[] letters) {
+        if (nextDigits.length() == 0) {
+            result.add(current.toString());
+        } else {
+            String letterOptions = letters[nextDigits.charAt(0) - '0'];
+            for (char letter : letterOptions.toCharArray()) {
+                current.append(letter);
+                backtrack(result, current, nextDigits.substring(1), letters);
+                current.deleteCharAt(current.length() - 1);
             }
         }
-
-        result.addAll(queue);
-        return result;
     }
 }
