@@ -42,11 +42,11 @@ class Solution {
         while(curr != null){
             Node temp  = curr.next.next;
             curr.next = temp;
+            curr = temp;
             if(temp != null){
                 newCurr.next = temp.next;
                 newCurr = newCurr.next;
             }
-            curr = temp;
         }
         return newHead;
         
