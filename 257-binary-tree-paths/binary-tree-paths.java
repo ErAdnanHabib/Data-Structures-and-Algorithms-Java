@@ -17,21 +17,23 @@ class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
 
         List<String> list = new ArrayList<>();
-        dfs(root , "" , list);
+        StringBuilder sb = new StringBuilder();
+        dfs(root , sb , list);
         return list;
     }
-    void dfs(TreeNode node , String path , List<String> list){
+    void dfs(TreeNode node , StringBuilder sb , List<String> list){
 
         if(node==null)return;
+        int len =sb.length();
 
-        path += node.val;
+        sb.append(node.val);
 
         if(node.left==null && node.right==null){
-            list.add(path);
-        }else{
-            path +="->";
-            dfs(node.left , path , list);
-            dfs(node.right , path , list);
+            list.add(sb.toString());
         }
+        sb.append("->");
+        dfs(node.left , sb , list);
+        dfs(node.right , sb , list);
+        sb.setLength(len);
     }
 }
