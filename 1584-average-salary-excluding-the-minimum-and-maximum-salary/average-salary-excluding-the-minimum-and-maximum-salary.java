@@ -5,10 +5,9 @@ class Solution {
         double deno = salary.length-2;
         double nume=0;
         for(int i=1 ; i < salary.length-1;i++){
-            nume += salary[i];
+            nume += salary[i]/deno;
         }
-        double ans = nume/deno;
-        return ans;
+        return nume;
         
     }
 }
